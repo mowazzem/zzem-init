@@ -1,6 +1,5 @@
 source ~/.config/nvim/vim_plug.vim
 source ~/.vim_runtime/vimrcs/basic.vim
-" source ~/.config/nvim/coc.vim
 
 set laststatus=2
 set nu
