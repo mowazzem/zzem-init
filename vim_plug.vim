@@ -29,7 +29,7 @@ Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
 
 "vim auto-pairs plugin
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 
 "vim papercolor-theme
 Plug 'NLKNguyen/papercolor-theme'
@@ -64,9 +64,6 @@ Plug 'ray-x/starry.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" coc.nvim
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'GlennLeo/cobalt2'
 
 Plug 'pangloss/vim-javascript'
@@ -77,4 +74,6 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
+
+Plug 'buoto/gotests-vim'
 call plug#end()

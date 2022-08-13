@@ -68,9 +68,9 @@ let g:tagbar_type_go = {
         \ 'ctagsbin'  : 'gotags',
         \ 'ctagsargs' : '-sort -silent'
 \ }
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
@@ -85,6 +85,7 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 lang ja_JP.UTF-8
 
+let g:gotests_bin = '/Users/mowazzemhosen/go/bin/gotests'
 
 lua <<END
 require('my')
@@ -143,6 +144,5 @@ require("telescope").setup {
 -- you need to call load_extension, somewhere after setup function:
 require("telescope").load_extension "file_browser"
 
+require('nvim-autopairs').setup()
 END
-
-
