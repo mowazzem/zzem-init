@@ -76,4 +76,6 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 Plug 'buoto/gotests-vim'
+
+Plug 'vim-test/vim-test'
 call plug#end()

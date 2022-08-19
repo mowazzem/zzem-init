@@ -1,5 +1,5 @@
 source ~/.config/nvim/vim_plug.vim
-source ~/.vim_runtime/vimrcs/basic.vim
+source ./basic.vim
 
 set laststatus=2
 set nu
@@ -21,6 +21,13 @@ nmap <leader>gj :diffget //3<CR>
 nmap <leader>tt :TagbarToggle<CR>
 nmap <leader>vs :vs<CR><C-l>
 nmap <leader>sp :sp<CR><C-j>
+
+" vim-test mapping
+nmap <silent> <leader>vtt :TestNearest<CR>
+nmap <silent> <leader>vtT :TestFile<CR>
+nmap <silent> <leader>vta :TestSuite<CR>
+nmap <silent> <leader>vtl :TestLast<CR>
+nmap <silent> <leader>vtg :TestVisit<CR>
 
 
 set completeopt=menu,menuone,noselect
@@ -88,61 +95,9 @@ lang ja_JP.UTF-8
 let g:gotests_bin = '/Users/mowazzemhosen/go/bin/gotests'
 
 lua <<END
-require('my')
-require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'gruvbox',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
-}
-
--- You don't need to set any of these options.
--- IMPORTANT!: this is only a showcase of how you can set default options!
-require("telescope").setup {
-  extensions = {
-    file_browser = {
-      theme = "gruvbox",
-      -- disables netrw and use telescope-file-browser in its place
-    },
-  },
-}
--- To get telescope-file-browser loaded and working with telescope,
--- you need to call load_extension, somewhere after setup function:
-require("telescope").load_extension "file_browser"
+require('lsp_config')
+require('evil_lualine')
+require('telescope_config')
 
 require('nvim-autopairs').setup()
 END
