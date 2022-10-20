@@ -6,7 +6,9 @@ local lualine = require('lualine')
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-  bg       = '#202328',
+  -- bg       = '#202328',
+  -- bg       = '#1f1f1f',
+  bg       = '#484345',
   fg       = '#bbc2cf',
   yellow   = '#ECBE7B',
   cyan     = '#008080',
@@ -173,7 +175,7 @@ ins_left {
     return msg
   end,
   icon = ' LSP:',
-  color = { fg = '#ffffff', gui = 'bold' },
+  color = { fg = '#ffffff', gui = 'bold'},
 }
 
 -- Add components to right sections

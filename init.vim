@@ -1,5 +1,5 @@
 source ~/.config/nvim/vim_plug.vim
-source ./basic.vim
+source ~/.config/nvim/basic.vim
 
 set laststatus=2
 set nu
@@ -30,6 +30,10 @@ nmap <silent> <leader>vtl :TestLast<CR>
 nmap <silent> <leader>vtg :TestVisit<CR>
 
 
+
+nmap <silent> <leader>fmtl :lua vim.lsp.buf.formatting()<CR>
+
+
 set completeopt=menu,menuone,noselect
 
 let g:go_highlight_structs = 1
@@ -38,9 +42,10 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_types = 1
+let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
 let g:go_fmt_command="gopls"
-let g:go_gopls_gofumpt=1
+" let g:go_gopls_gofumpt=1
 
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
@@ -94,10 +99,28 @@ lang ja_JP.UTF-8
 
 let g:gotests_bin = '/Users/mowazzemhosen/go/bin/gotests'
 
+set termguicolors
 lua <<END
 require('lsp_config')
 require('evil_lualine')
 require('telescope_config')
-
 require('nvim-autopairs').setup()
 END
+
+autocmd FileType lua set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType graphql set tabstop=8|set shiftwidth=8|set expandtab
+" autocmd FileType go set tabstop=4|set shiftwidth=4|set expandtab
+
+" vimwiki todo symbols
+let g:vimwiki_listsyms = '✗○◐●✓'
+
+" custom setting for clangformat
+let g:neoformat_cpp_clangformat = {
+    \ 'exe': 'clang-format',
+    \ 'args': ['--style="{IndentWidth: 4}"']
+\}
+let g:neoformat_enabled_cpp = ['clangformat']
+let g:neoformat_enabled_c = ['clangformat']
+
+nnoremap <leader>nf <cmd>Neoformat<cr>
+let g:cmake_link_compile_commands = 1

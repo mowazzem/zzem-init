@@ -3,7 +3,7 @@
 require("telescope").setup {
   extensions = {
     file_browser = {
-      theme = "gruvbox",
+      theme = "dropdown",
       -- disables netrw and use telescope-file-browser in its place
     },
   },

@@ -6,6 +6,7 @@ local colors = {
   light_green = '#83a598',
   orange = '#fe8019',
   green = '#8ec07c',
+  magenta = '#900c3f',
 }
 
 local theme = {

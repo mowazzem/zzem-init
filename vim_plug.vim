@@ -16,6 +16,9 @@ Plug 'tpope/vim-vinegar'
 "vim-fugitive plugin
 Plug 'tpope/vim-fugitive'
 
+" vim commit browser integrated with vim-fugitive
+Plug 'junegunn/gv.vim'
+
 "vim-repeat plugin
 Plug 'tpope/vim-repeat'
 
@@ -24,6 +27,12 @@ Plug 'tpope/vim-commentary'
 
 "vim-surround plugin
 Plug 'tpope/vim-surround'
+
+"vim-unimpaired plugin
+Plug 'tpope/vim-unimpaired'
+
+"vim-rhubarb plugin
+Plug 'tpope/vim-rhubarb'
 
 "gruvbox theme
 Plug 'morhetz/gruvbox'
@@ -35,8 +44,9 @@ Plug 'windwp/nvim-autopairs'
 Plug 'NLKNguyen/papercolor-theme'
 
 " neovim lsp-config plugin and nvim-cmp
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -78,4 +88,16 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'buoto/gotests-vim'
 
 Plug 'vim-test/vim-test'
+
+Plug 'vimwiki/vimwiki'
+
+Plug 'cdelledonne/vim-cmake'
+
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+" Plug 'ryanoasis/vim-devicons' Icons without colours
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+
+Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
