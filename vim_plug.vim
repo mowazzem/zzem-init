@@ -98,6 +98,4 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 " Plug 'ryanoasis/vim-devicons' Icons without colours
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
-
-Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
