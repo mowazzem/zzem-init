@@ -3,6 +3,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*' }
 
+"" go debugger
+Plug 'sebdah/vim-delve'
+
 "hybrid vim colors plugin
 Plug 'w0ng/vim-hybrid'
 
@@ -84,9 +87,9 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-telescope/telescope-github.nvim'
 
 Plug 'buoto/gotests-vim'
-
 Plug 'vim-test/vim-test'
 
 Plug 'vimwiki/vimwiki'
@@ -98,4 +101,9 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 " Plug 'ryanoasis/vim-devicons' Icons without colours
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+
+" vim plugin for csv file
+Plug 'chrisbra/csv.vim'
+
+Plug 'rebelot/kanagawa.nvim'
 call plug#end()

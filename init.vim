@@ -13,6 +13,7 @@ if !has('gui_running')
   set t_Co=256
 endif
 
+
 set completeopt=menu,menuone,noselect
 
 nmap <leader>gs :G<CR>
