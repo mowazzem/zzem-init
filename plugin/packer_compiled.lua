@@ -159,7 +159,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "ultisnips", "cmp-cmdline", "cmp-nvim-lsp", "cmp-path", "cmp-buffer", "nvim-autopairs", "cmp-nvim-ultisnips" },
+    after = { "cmp-path", "cmp-nvim-lsp", "cmp-nvim-ultisnips", "cmp-cmdline", "nvim-autopairs", "ultisnips", "cmp-buffer" },
     config = { 'require("core.plugin_configs.cmp")' },
     loaded = false,
     needs_bufread = false,
@@ -251,17 +251,19 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require("core.plugin_configs.lualine")
-time([[Config for lualine.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require("core.plugin_configs.treesitter")
 time([[Config for nvim-treesitter]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require("core.plugin_configs.lualine")
+time([[Config for lualine.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[au CmdUndefined Telescope buffers ++once lua require"packer.load"({'telescope.nvim'}, {}, _G.packer_plugins)]])
+pcall(vim.cmd, [[au CmdUndefined Telescope help_tags ++once lua require"packer.load"({'telescope.nvim'}, {}, _G.packer_plugins)]])
 pcall(vim.api.nvim_create_user_command, 'G', function(cmdargs)
           require('packer.load')({'vim-fugitive'}, { cmd = 'G', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -278,8 +280,6 @@ pcall(vim.api.nvim_create_user_command, 'Telescope', function(cmdargs)
       end})
 pcall(vim.cmd, [[au CmdUndefined Telescope find_files ++once lua require"packer.load"({'telescope.nvim'}, {}, _G.packer_plugins)]])
 pcall(vim.cmd, [[au CmdUndefined Telescope live_grep ++once lua require"packer.load"({'telescope.nvim'}, {}, _G.packer_plugins)]])
-pcall(vim.cmd, [[au CmdUndefined Telescope buffers ++once lua require"packer.load"({'telescope.nvim'}, {}, _G.packer_plugins)]])
-pcall(vim.cmd, [[au CmdUndefined Telescope help_tags ++once lua require"packer.load"({'telescope.nvim'}, {}, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
@@ -290,9 +290,9 @@ vim.cmd [[au FileType go ++once lua require("packer.load")({'vim-go'}, { ft = "g
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-cmp'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'vim-vinegar', 'vim-commentary'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'gruvbox.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-cmp'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'vim-commentary', 'vim-vinegar'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
