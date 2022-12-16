@@ -32,7 +32,6 @@ return require('packer').startup(function(use)
   use {
       'tpope/vim-fugitive',
       cmd = {'G'},
-      config = 'requires("core.plugin_configs.vim-fugitive")',
   }
   use 'tpope/vim-commentary'
   use {
