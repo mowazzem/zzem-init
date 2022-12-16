@@ -33,7 +33,10 @@ return require('packer').startup(function(use)
       'tpope/vim-fugitive',
       cmd = {'G'},
   }
-  use 'tpope/vim-commentary'
+  use {
+      'tpope/vim-commentary',
+      event = 'BufWinEnter',
+  }
   use {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
