@@ -1,2 +1,2 @@
-# zzem-vimrcs
-my vimrc configs
+# zzem-init
+neovim configs
