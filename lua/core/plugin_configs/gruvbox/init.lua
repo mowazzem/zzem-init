@@ -1,5 +1,3 @@
-vim.opt.termguicolors=true
-vim.opt.background='dark'
 -- setup must be called before loading the colorscheme
 -- Default options:
 require("gruvbox").setup({

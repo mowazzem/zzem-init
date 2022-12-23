@@ -24,6 +24,11 @@ return require('packer').startup(function(use)
     event = 'VimEnter',
     config = 'require("core.plugin_configs.gruvbox")',
   }
+  -- use {
+  --   'folke/tokyonight.nvim',
+  --   event = 'VimEnter',
+  --   config = 'require("core.plugin_configs.tokyonight")',
+  -- }
   use {
     'tpope/vim-vinegar',
     opt = true,
@@ -58,7 +63,7 @@ return require('packer').startup(function(use)
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
-    event = 'BufWinEnter',
+    config = 'core.plugin_configs.lsp',
   }
   use {
     'hrsh7th/nvim-cmp',
@@ -67,11 +72,13 @@ return require('packer').startup(function(use)
     requires = {
       {
         'SirVer/ultisnips',
-        after = 'nvim-cmp',
       },
-      {
-        'quangnguyen30192/cmp-nvim-ultisnips',
+      { 'quangnguyen30192/cmp-nvim-ultisnips',
         after = 'nvim-cmp',
+        config = function()
+          --optional call to setup (see customization section)
+          require("cmp_nvim_ultisnips").setup {}
+        end,
       },
       { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
@@ -81,13 +88,19 @@ return require('packer').startup(function(use)
   }
   use {
     'nvim-lualine/lualine.nvim',
+    event = 'VimEnter',
+    config = 'require("core.plugin_configs.lualine")',
     requires = {
       {
         'kyazdani42/nvim-web-devicons',
         opt = true,
       }
     },
-    config = 'require("core.plugin_configs.lualine")',
+  }
+  use {
+    'ziglang/zig',
+    ft = 'zig',
+    config = 'require("core.plugin_configs.zig")',
   }
   use 'dstein64/vim-startuptime'
 

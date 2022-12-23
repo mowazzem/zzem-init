@@ -8,6 +8,11 @@ function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+vim.o.syntax = 'on'
+
+vim.opt.termguicolors = true
+vim.opt.background = 'dark'
+
 vim.opt.filetype = 'on'
 vim.opt.filetype.plugin = 'on'
 vim.opt.filetype.indent = 'on'
@@ -45,6 +50,7 @@ vim.g.history = 500
 vim.g.autoread = true
 vim.g.laststatus = 2
 
+vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.shiftwidth = 4
@@ -77,3 +83,5 @@ vim.keymap.set("n", "<leader>vs", ":vs<cr><C-W>l")
 vim.keymap.set("n", "<leader>sp", ":sp<cr><C-W>j")
 
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
+
+vim.cmd([[autocmd FileType c,cpp,go setlocal noet ci pi sts=0 sw=4 ts=4]])
