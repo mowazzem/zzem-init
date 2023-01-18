@@ -1,12 +1,6 @@
-vim.g.mapleader = ","
+local utils = require('utils')
 
-function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+vim.g.mapleader = ","
 
 vim.o.syntax = 'on'
 
@@ -67,11 +61,14 @@ vim.opt.completeopt = "menu,menuone,noselect"
 vim.g.nocompatible = true
 vim.g.wildignorecase = true
 
+
+vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro nu rnu"
+
 --map("n","*",":<C-u>call VisualSelection('','')<CR>/<C-R>=@/<CR><CR>",{silent=true})
 
-map("n", "<leader>w", ":w!<cr>", { silent = true })
-map("n", "<leader><cr>", ":noh<cr>", { silent = true })
-map("n", "<leader>si", ":source %<cr>", { silent = false })
+utils.map("n", "<leader>w", ":w!<cr>", { silent = true })
+utils.map("n", "<leader><cr>", ":noh<cr>", { silent = true })
+utils.map("n", "<leader>si", ":source %<cr>", { silent = false })
 
 vim.keymap.set("n", "<C-j>", "<C-W>j")
 vim.keymap.set("n", "<C-k>", "<C-W>k")

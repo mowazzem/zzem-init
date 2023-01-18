@@ -7,4 +7,4 @@ vim.g.go_highlight_types = 1
 vim.g.go_highlight_extra_types = 1
 vim.g.go_highlight_fields = 1
 vim.g.go_fmt_command = "gopls"
--- vim.g.go_gopls_gofumpt=1
+vim.g.go_gopls_gofumpt=1

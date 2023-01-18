@@ -8,17 +8,19 @@ require("mason").setup({
   }
 })
 
-require("mason-lspconfig").setup()
+local lspconfig = require('lspconfig')
 local opts = {}
 require("mason-lspconfig").setup_handlers {
   function(server_name) -- default handler (optional)
     opts.on_attach = function(_, bufnr)
       local bufopts = { silent = true, buffer = bufnr }
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.type_definition, bufopts)
-      vim.keymap.set('n', 'grf', vim.lsp.buf.references, bufopts)
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+      vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, bufopts)
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     end
-    require("lspconfig")[server_name].setup(opts)
+    lspconfig[server_name].setup(opts)
   end,
   ["sumneko_lua"] = function()
     opts.settings = {
@@ -28,12 +30,12 @@ require("mason-lspconfig").setup_handlers {
         }
       }
     }
-    require("lspconfig").sumneko_lua.setup(opts)
+    lspconfig.sumneko_lua.setup(opts)
   end,
   ["tsserver"] = function()
     opts.filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
     opts.cmd = { "typescript-language-server", "--stdio" }
-    require("lspconfig").tsserver.setup(opts)
+    lspconfig.tsserver.setup(opts)
   end,
 }
 

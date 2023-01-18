@@ -16,19 +16,38 @@ return require('packer').startup(function(use)
   use {
     'fatih/vim-go',
     opt = true,
-    ft = { 'go' },
-    config = 'require("core.plugin_configs.vimgo")',
+    ft = { "go", "gomod", "gowork", "gotmpl" },
+    config = function() require("core.plugin_configs.vimgo") end,
+  }
+  use {
+    'mfussenegger/nvim-dap',
+    config = function() require("core.plugin_configs.dap.dap") end,
+  }
+  use {
+    'rcarriga/nvim-dap-ui',
+    config = function() require("core.plugin_configs.dap.dap-ui") end,
+  }
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    requires = { { 'nvim-lua/plenary.nvim' } },
+    -- cmd = { 'Telescope', 'Telescope find_files', 'Telescope live_grep', 'Telescope buffers', 'Telescope help_tags' },
+    config = function() require("core.plugin_configs.telescope") end,
+  }
+  use {
+    'nvim-telescope/telescope-dap.nvim',
+    keys = { '<leader>dcc', '<leader>dco' },
+    config = function() require("core.plugin_configs.dap.telescope-dap") end
+  }
+  use {
+    'leoluz/nvim-dap-go',
+    ft = { "go", "gomod", "gowork", "gotmpl" },
+    config = function() require("core.plugin_configs.dap.go") end,
   }
   use {
     'ellisonleao/gruvbox.nvim',
     event = 'VimEnter',
-    config = 'require("core.plugin_configs.gruvbox")',
+    config = function() require("core.plugin_configs.gruvbox") end,
   }
-  -- use {
-  --   'folke/tokyonight.nvim',
-  --   event = 'VimEnter',
-  --   config = 'require("core.plugin_configs.tokyonight")',
-  -- }
   use {
     'tpope/vim-vinegar',
     opt = true,
@@ -46,29 +65,24 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     enter = 'BufWinEnter',
-    config = 'require("core.plugin_configs.treesitter")',
+    config = function() require("core.plugin_configs.treesitter") end,
   }
   use {
     'windwp/nvim-autopairs',
     after = 'nvim-cmp',
-    config = 'require("core.plugin_configs.nvim-autopairs")',
-  }
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { { 'nvim-lua/plenary.nvim' } },
-    cmd = { 'Telescope', 'Telescope find_files', 'Telescope live_grep', 'Telescope buffers', 'Telescope help_tags' },
-    config = 'require("core.plugin_configs.telescope")',
+    config = function() require("core.plugin_configs.nvim-autopairs") end,
   }
   use {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
-    config = 'core.plugin_configs.lsp',
+    event = 'VimEnter',
+    config = function() require("core.plugin_configs.lsp") end,
   }
   use {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
-    config = 'require("core.plugin_configs.cmp")',
+    config = function() require("core.plugin_configs.cmp") end,
     requires = {
       {
         'SirVer/ultisnips',
@@ -89,7 +103,7 @@ return require('packer').startup(function(use)
   use {
     'nvim-lualine/lualine.nvim',
     event = 'VimEnter',
-    config = 'require("core.plugin_configs.lualine")',
+    config = function() require("core.plugin_configs.lualine") end,
     requires = {
       {
         'kyazdani42/nvim-web-devicons',
@@ -100,7 +114,10 @@ return require('packer').startup(function(use)
   use {
     'ziglang/zig',
     ft = 'zig',
-    config = 'require("core.plugin_configs.zig")',
+    config = function() require("core.plugin_configs.zig") end,
+  }
+  use {
+    'ziglang/zig.vim'
   }
   use 'dstein64/vim-startuptime'
 
