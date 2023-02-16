@@ -3,8 +3,8 @@ cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-    end,
+      require 'luasnip'.lsp_expand(args.body)
+    end
   },
   window = {
     completion = cmp.config.window.bordered(),
@@ -33,7 +33,7 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'ultisnips' }, -- For ultisnips users.
+    { name = 'luasnip' },
   }, {
     { name = 'buffer' },
   })
