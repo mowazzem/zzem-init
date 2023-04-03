@@ -9,3 +9,6 @@ utils.map('n', '<leader>dsbr', '<cmd>lua require"dap".set_breakpoint(vim.fn.inpu
 utils.map('n', '<leader>dsbm', '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>')
 utils.map('n', '<leader>dro', '<cmd>lua require"dap".repl.open()<CR>')
 utils.map('n', '<leader>drl', '<cmd>lua require"dap".repl.run_last()<CR>')
+
+
+require("core.plugin_configs.dap.jsts")

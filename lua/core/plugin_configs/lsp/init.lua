@@ -1,40 +1,63 @@
 require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗",
+    },
+  },
 })
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = { "lua_ls", "gopls", "zls", "tsserver" },
+})
 
-local lspconfig = require('lspconfig')
-local opts = {}
-require("mason-lspconfig").setup_handlers {
-    function(server_name) -- default handler (optional)
-      opts.on_attach = function(_, bufnr)
-        local bufopts = { silent = true, buffer = bufnr }
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-      end
-      if server_name == "lua_ls" then
-        opts.settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { "vim" }
-                }
-            }
-        }
-      end
-      if server_name == "tsserver" then
-        opts.filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
-        opts.cmd = { "typescript-language-server", "--stdio" }
-        lspconfig.tsserver.setup(opts)
-      end
-      lspconfig[server_name].setup(opts)
-    end,
-}
+local onattach = function(_, bufnr)
+  local bufopts = { silent = true, buffer = bufnr }
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set("n", "go", vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+end
+
+local lspconfig = require("lspconfig")
+lspconfig.lua_ls.setup({
+  on_attach = onattach,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
+})
+lspconfig.gopls.setup({
+  on_attach = onattach,
+})
+lspconfig.zls.setup({
+  on_attach = onattach,
+})
+lspconfig.tsserver.setup({
+  on_attach = onattach,
+  filetypes = { "typescript", "typescriptreact" },
+  cmd = { "typescript-language-server", "--stdio" },
+})
+lspconfig.yamlls.setup({
+  on_attach = onattach,
+  filetypes = { "yaml", "yml" },
+  cmd = { "yaml-language-server", "--stdio" },
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] = "conf/**/*catalog*",
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+      },
+    },
+  },
+})
+lspconfig.dockerls.setup({
+  on_attach = onattach,
+})
+lspconfig.solargraph.setup({
+  on_attach = onattach,
+})

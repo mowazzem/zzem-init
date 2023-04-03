@@ -1,24 +1,24 @@
-local utils = require('utils')
+local utils = require("utils")
 
 vim.g.mapleader = ","
 
-vim.o.syntax = 'on'
+vim.o.syntax = "on"
 
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
+vim.opt.background = "dark"
 
-vim.opt.filetype = 'on'
-vim.opt.filetype.plugin = 'on'
-vim.opt.filetype.indent = 'on'
+vim.opt.filetype = "on"
+vim.opt.filetype.plugin = "on"
+vim.opt.filetype.indent = "on"
 
-vim.opt.encoding = 'utf-8'
+vim.opt.encoding = "utf-8"
 
 vim.opt.showmatch = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ruler = true
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 vim.opt.wildmenu = true
 
 vim.opt.cursorline = true
@@ -61,7 +61,6 @@ vim.opt.completeopt = "menu,menuone,noselect"
 vim.g.nocompatible = true
 vim.g.wildignorecase = true
 
-
 vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro nu rnu"
 
 --map("n","*",":<C-u>call VisualSelection('','')<CR>/<C-R>=@/<CR><CR>",{silent=true})
@@ -75,10 +74,10 @@ vim.keymap.set("n", "<C-k>", "<C-W>k")
 vim.keymap.set("n", "<C-h>", "<C-W>h")
 vim.keymap.set("n", "<C-l>", "<C-W>l")
 
-
 vim.keymap.set("n", "<leader>vs", ":vs<cr><C-W>l")
 vim.keymap.set("n", "<leader>sp", ":sp<cr><C-W>j")
 
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
 
-vim.cmd([[autocmd FileType c,cpp,go setlocal noet ci pi sts=0 sw=4 ts=4]])
+vim.cmd([[autocmd FileType c,cpp,go setlocal shiftwidth=4 softtabstop=4 expandtab]])
+vim.cmd([[autocmd FileType lua,javascript,typescript,typescriptreact setlocal shiftwidth=2 softtabstop=2 expandtab]])
