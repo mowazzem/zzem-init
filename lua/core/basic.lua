@@ -80,4 +80,6 @@ vim.keymap.set("n", "<leader>sp", ":sp<cr><C-W>j")
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
 
 vim.cmd([[autocmd FileType c,cpp,go setlocal shiftwidth=4 softtabstop=4 expandtab]])
-vim.cmd([[autocmd FileType lua,javascript,typescript,typescriptreact setlocal shiftwidth=2 softtabstop=2 expandtab]])
+vim.cmd(
+	[[autocmd FileType lua,javascript,typescript,typescriptreact,proto setlocal shiftwidth=2 softtabstop=2 expandtab]]
+)

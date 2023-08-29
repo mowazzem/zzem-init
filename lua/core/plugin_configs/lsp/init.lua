@@ -39,7 +39,7 @@ lspconfig.zls.setup({
 })
 lspconfig.tsserver.setup({
   on_attach = onattach,
-  filetypes = { "typescript", "typescriptreact" },
+  filetypes = { "typescript", "typescriptreact", "javascript" },
   cmd = { "typescript-language-server", "--stdio" },
 })
 lspconfig.yamlls.setup({
@@ -57,7 +57,30 @@ lspconfig.yamlls.setup({
 })
 lspconfig.dockerls.setup({
   on_attach = onattach,
+  settings = {
+    diagnostics = {
+      virtual_text = true,
+    },
+  },
 })
 lspconfig.solargraph.setup({
   on_attach = onattach,
 })
+
+lspconfig.neocmake.setup({
+  on_attach = onattach,
+})
+
+lspconfig.ols.setup({
+  on_attach = onattach,
+})
+lspconfig.svelte.setup({
+  on_attach = onattach,
+})
+
+-- lspconfig.bufls.setup({
+--   on_attach = onattach,
+--   filetypes = { "proto" },
+--   cmd = { "bufls", "serve" },
+--   rootpatterns = { "buf.yaml", ".git" },
+-- })
