@@ -169,7 +169,7 @@ require("lazy").setup({
   {
     "tpope/vim-unimpaired",
   },
-  { "williamboman/mason.nvim" },          -- Optional
+  { "williamboman/mason.nvim" },           -- Optional
   { "williamboman/mason-lspconfig.nvim" }, -- Optional
   {
     "neovim/nvim-lspconfig",
@@ -339,16 +339,10 @@ require("lazy").setup({
           -- }),
           null_ls.builtins.formatting.prettierd.with({
             extra_args = { "no-semi", "--single-quote", "--jsx-single-quote" },
-            filetypes = { "html", "yaml", "markdown", "typescript", "typescriptreact", "proto" },
+            filetypes = { "html", "yaml", "typescript", "typescriptreact", "json" },
           }),
         },
       })
-      vim.cmd([[autocmd FileType lua autocmd BufWritePre * lua vim.lsp.buf.format()]])
-      vim.cmd([[autocmd FileType proto autocmd BufWritePre * lua vim.lsp.buf.format()]])
-      vim.cmd([[autocmd FileType typescript autocmd BufWritePre * lua vim.lsp.buf.format()]])
-      vim.cmd([[autocmd FileType yaml autocmd BufWritePre * lua vim.lsp.buf.format()]])
-      vim.cmd([[autocmd FileType yml autocmd BufWritePre * lua vim.lsp.buf.format()]])
-      vim.cmd([[autocmd FileType typescriptreact autocmd BufWritePre * lua vim.lsp.buf.format()]])
     end,
   },
   {
@@ -403,5 +397,29 @@ require("lazy").setup({
     "leafOfTree/vim-svelte-plugin",
     config = function()
     end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      vim.opt.termguicolors = true
+      vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
+
+      require("indent_blankline").setup {
+        char = "",
+        char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+        space_char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+        show_trailing_blankline_indent = false,
+        space_char_blankline = " ",
+        show_current_context = true,
+        show_current_context_start = true,
+      }
+    end
   },
 })

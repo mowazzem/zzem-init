@@ -81,5 +81,13 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
 
 vim.cmd([[autocmd FileType c,cpp,go setlocal shiftwidth=4 softtabstop=4 expandtab]])
 vim.cmd(
-	[[autocmd FileType lua,javascript,typescript,typescriptreact,proto setlocal shiftwidth=2 softtabstop=2 expandtab]]
+  [[autocmd FileType lua,javascript,typescript,typescriptreact,proto setlocal shiftwidth=2 softtabstop=2 expandtab]]
 )
+
+vim.cmd([[autocmd FileType json autocmd BufWritePre * lua vim.lsp.buf.format()]])
+vim.cmd([[autocmd FileType lua autocmd BufWritePre * lua vim.lsp.buf.format()]])
+vim.cmd([[autocmd FileType proto autocmd BufWritePre * lua vim.lsp.buf.format()]])
+vim.cmd([[autocmd FileType typescript autocmd BufWritePre * lua vim.lsp.buf.format()]])
+vim.cmd([[autocmd FileType yaml autocmd BufWritePre * lua vim.lsp.buf.format()]])
+vim.cmd([[autocmd FileType yml autocmd BufWritePre * lua vim.lsp.buf.format()]])
+vim.cmd([[autocmd FileType typescriptreact autocmd BufWritePre * lua vim.lsp.buf.format()]])

@@ -27,19 +27,18 @@ local dap = require("dap")
 --    program = "${file}",
 --  },
 --}
+--dap.adapters.dlv = {
+--  type = "server",
+--  host = "127.0.0.1",
+--  port = 38697,
+--}
 
--- dap.adapters.delve = {
---   type = "server",
---   host = "127.0.0.1",
---   port = 38697,
--- }
-
--- dap.adapters.go = function(callback, config)
---   -- Wait for delve to start
---   vim.defer_fn(function()
---     callback({ type = "server", host = "127.0.0.1", port = "38697" })
---   end, 100)
--- end
+dap.adapters.go = function(callback, config)
+  -- Wait for delve to start
+  vim.defer_fn(function()
+    callback({ type = "server", host = "127.0.0.1", port = "38697" })
+  end, 100)
+end
 dap.adapters.dlv = {
   type = "server",
   host = "127.0.0.1",
@@ -61,6 +60,8 @@ dap.configurations.go = {
     program = "${workspaceFolder}",
   },
 }
+
+
 -- require("dap-go").setup({
 --   -- dap_configurations = {
 --   --   {
