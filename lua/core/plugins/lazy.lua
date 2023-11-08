@@ -372,26 +372,32 @@ require("lazy").setup({
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     config = function()
-      vim.opt.termguicolors = true
-      vim.cmd([[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]])
-      vim.cmd([[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]])
+      local highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
+      }
 
-      require("indent_blankline").setup({
-        char = "",
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
-        space_char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
-        show_trailing_blankline_indent = false,
-        space_char_blankline = " ",
-        show_current_context = true,
-        show_current_context_start = true,
-      })
+      local hooks = require("ibl.hooks")
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+
+      require("ibl").setup({ indent = { highlight = highlight } })
     end,
   },
   {
@@ -424,13 +430,14 @@ require("lazy").setup({
     config = function()
       local lint = require("lint")
       lint.linters_by_ft = {
+        lua = { "luacheck" },
         javascript = { "eslint_d" },
         typescript = { "eslint_d" },
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         json = { "eslint_d" },
         yaml = { "eslint_d" },
-        proto = { "buf" },
+        proto = { "buf_lint" },
       }
       local lint_aug = vim.api.nvim_create_augroup("lint", {
         clear = true,
