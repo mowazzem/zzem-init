@@ -169,7 +169,7 @@ require("lazy").setup({
   {
     "tpope/vim-unimpaired",
   },
-  { "williamboman/mason.nvim" },           -- Optional
+  { "williamboman/mason.nvim" }, -- Optional
   { "williamboman/mason-lspconfig.nvim" }, -- Optional
   {
     "neovim/nvim-lspconfig",
@@ -320,32 +320,6 @@ require("lazy").setup({
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.buf,
-          -- null_ls.builtins.formatting.protolint.with({
-          --   command = "protolint",
-          --   filetypes = { "proto" },
-          --   extra_args = { "--fix", "$FILENAME" },
-          --   args = { "--fix", "$FILENAME" },
-          -- }),
-          -- null_ls.builtins.diagnostics.protolint.with({
-          --   filetypes = { "proto" },
-          -- }),
-          null_ls.builtins.formatting.prettierd.with({
-            extra_args = { "no-semi", "--single-quote", "--jsx-single-quote" },
-            filetypes = { "html", "yaml", "typescript", "typescriptreact", "json" },
-          }),
-        },
-      })
-    end,
-  },
-  {
     "mxsdev/nvim-dap-vscode-js",
     config = function()
       require("dap-vscode-js").setup({
@@ -390,22 +364,20 @@ require("lazy").setup({
   },
   {
     "DanielGavin/ols",
-    config = function()
-    end,
+    config = function() end,
   },
   {
     "leafOfTree/vim-svelte-plugin",
-    config = function()
-    end,
+    config = function() end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       vim.opt.termguicolors = true
-      vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
+      vim.cmd([[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]])
+      vim.cmd([[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]])
 
-      require("indent_blankline").setup {
+      require("indent_blankline").setup({
         char = "",
         char_highlight_list = {
           "IndentBlanklineIndent1",
@@ -419,7 +391,55 @@ require("lazy").setup({
         space_char_blankline = " ",
         show_current_context = true,
         show_current_context_start = true,
+      })
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local conform = require("conform")
+      conform.setup({
+        formatters_by_ft = {
+          lua = { "stylua" },
+          javascript = { "prettierd" },
+          typescript = { "prettierd" },
+          javascriptreact = { "prettierd" },
+          typescriptreact = { "prettierd" },
+          json = { "prettierd" },
+          yaml = { "prettierd" },
+          proto = { "buf" },
+        },
+        format_on_save = {
+          lsp_fallback = true,
+          async = false,
+          timout_ms = 500,
+        },
+      })
+    end,
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local lint = require("lint")
+      lint.linters_by_ft = {
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        json = { "eslint_d" },
+        yaml = { "eslint_d" },
       }
-    end
+      local lint_aug = vim.api.nvim_create_augroup("lint", {
+        clear = true,
+      })
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        group = lint_aug,
+        callback = function()
+          lint.try_lint()
+        end,
+      })
+    end,
   },
 })
