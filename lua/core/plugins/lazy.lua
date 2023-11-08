@@ -430,6 +430,7 @@ require("lazy").setup({
         typescriptreact = { "eslint_d" },
         json = { "eslint_d" },
         yaml = { "eslint_d" },
+        proto = { "buf" },
       }
       local lint_aug = vim.api.nvim_create_augroup("lint", {
         clear = true,
