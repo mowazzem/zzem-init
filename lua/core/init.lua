@@ -1,2 +1,2 @@
-require('core.basic')
-require('core.plugins.lazy')
+require("core.basic")
+require("core.lazy")
