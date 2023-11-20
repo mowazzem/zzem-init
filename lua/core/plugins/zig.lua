@@ -1,7 +1,5 @@
 return {
-  "ziglang/zig",
+  "ziglang/zig.vim",
   ft = "zig",
-  config = function()
-    require("core.plugin_configs.zig")
-  end,
+  config = function() end,
 }
