@@ -1,2 +1,2 @@
-# zzem-init
+:zzem-init
 neovim configs
